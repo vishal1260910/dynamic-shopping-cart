@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My Shopping List</title>
+  <style>
+    
+    button{
+      margin-left: 7px;
+      margin-bottom: 7px;
+    }
+  </style>
+</head>
+<body>
+    <h1> My Shopping Cart </h1>
+    <span>
+      <label for = "item">Enter a new item </label>
+      <input type = "text" name = "item"  id = "item">
+      <button id = "addbtn">Add Item </button>
+      <ul id ="items">
+      </ul>
+    </span>
+
+    <script>
+      const addItem = document.querySelector("button"); //assigning variable to items on which event- 
+      const input = document.querySelector("input");         //event listeners need to be added
+      const list = document.querySelector("ul");
+
+      addItem.addEventListener("click", faddItem)   //adding event listener to add item button
+
+function faddItem(){                             //function that creates list elements and then adds to the list 
+  item = input.value;
+
+  const listitem = document.createElement("li");  
+  listitem.textContent = item;
+
+  input.value = "";      //clearing the input field after adding the element to the list
+  input.focus();           //after input field is cleared the focus again shifts to input field so that you don't
+                                  // have to click on the input field every time you add an element.
+  const delbtn = document.createElement("button");
+  delbtn.textContent = "Delete";
+
+  const span = document.createElement("span")
+
+  listitem.appendChild(span);
+  listitem.appendChild(delbtn);
+  list.appendChild(listitem);
+
+  delbtn.addEventListener("click", ()=>{
+    list.removeChild(listitem);
+    input.focus();
+  });
+
+}
+
+
+   </script>
+</body>
+</html>
